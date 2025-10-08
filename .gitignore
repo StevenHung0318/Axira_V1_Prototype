@@ -43,8 +43,7 @@ yarn-error.log*
 # Package manager
 .yarn/
 .pnp.*
-package-lock.json  # 如果你用 yarn
-# yarn.lock  # 如果你用 npm
+package-lock.json
 
 # Build artifacts
 *.tsbuildinfo
@@ -54,12 +53,12 @@ package-lock.json  # 如果你用 yarn
 *.jpg
 *.jpeg
 *.gif
-!client/public/**/*.png  # 但保留 public 資料夾的圖片
-
-# Development notes
-*.md
-!README.md  # 但保留 README
+!client/public/**/*.png
 
 # Replit
 .replit
 replit.md
+
+# Development notes (exclude all .md except README)
+*.md
+!README.md
