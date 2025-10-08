@@ -4468,12 +4468,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-tsconfig@npm:^4.7.0, get-tsconfig@npm:^4.7.5":
+"get-tsconfig@npm:^4.7.0":
   version: 4.10.1
   resolution: "get-tsconfig@npm:4.10.1"
   dependencies:
     resolve-pkg-maps: "npm:^1.0.0"
   checksum: 04d63f47fdecaefbd1f73ec02949be4ec4db7d6d9fbc8d4e81f9a4bb1c6f876e48943712f2f9236643d3e4d61d9a7b06da08564d08b034631ebe3f5605bef237
+  languageName: node
+  linkType: hard
+
+"get-tsconfig@npm:^4.7.5":
+  version: 4.11.0
+  resolution: "get-tsconfig@npm:4.11.0"
+  dependencies:
+    resolve-pkg-maps: "npm:^1.0.0"
+  checksum: f569a533ba6f68701e99a9af65c4b72186fc3446be7af9478906f047443d715a728959adae8661299ce49b5bb8edc06d942c81bce57632166104bce633600db8
   languageName: node
   linkType: hard
 
@@ -6088,7 +6097,7 @@ __metadata:
     tailwind-merge: "npm:^2.6.0"
     tailwindcss: "npm:^3.4.17"
     tailwindcss-animate: "npm:^1.0.7"
-    tsx: "npm:^4.19.1"
+    tsx: "npm:^4.20.6"
     tw-animate-css: "npm:^1.2.5"
     typescript: "npm:5.6.3"
     vaul: "npm:^1.1.2"
@@ -6696,7 +6705,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.19.1":
+"tsx@npm:^4.20.6":
   version: 4.20.6
   resolution: "tsx@npm:4.20.6"
   dependencies:
