@@ -7,8 +7,9 @@
     "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "NODE_ENV=development tsx server/index.ts",
     "dev:client": "vite",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm",
-    "start": "NODE_ENV=production node dist/index.js"
+    "build": "tsc && vite build",
+    "build:server": "tsc server/index.ts --outDir dist",
+    "start": "NODE_ENV=production node dist/server/index.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
