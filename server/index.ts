@@ -1,11 +1,23 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// 簡單的 log 函數（不依賴 vite.ts）
+// CORS 設定
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // 本地開發
+      "https://axira-v1-prototype.vercel.app", // 等下部署前端的網址（先預留）
+    ],
+    credentials: true,
+  })
+);
+
+// 簡單的 log 函數
 const log = (message: string) => {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "2-digit",
@@ -57,22 +69,13 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
+  // 只在開發環境才 setup vite
+  if (process.env.NODE_ENV === "development") {
     const { setupVite } = await import("./vite.js");
     await setupVite(app, server);
-  } else {
-    // 在生產環境中，serve 打包好的靜態檔案
-    const { serveStatic } = await import("./vite.js");
-    serveStatic(app);
   }
+  // 生產環境不需要 serve 靜態檔案，因為前端會部署到 Vercel
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
   const port = parseInt(process.env.PORT || "5001", 10);
   server.listen(
     {
@@ -81,7 +84,7 @@ app.use((req, res, next) => {
       reusePort: true,
     },
     () => {
-      log(`serving on port ${port}`);
+      log(`API server running on port ${port}`);
     }
   );
 })();
